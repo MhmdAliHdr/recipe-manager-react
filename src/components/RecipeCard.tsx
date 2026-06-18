@@ -1,5 +1,4 @@
 import type { Recipe } from "../types/recipe"
-
 interface RecipeCardProps{
     recipe: Recipe
     onDelete: (id: string) => void

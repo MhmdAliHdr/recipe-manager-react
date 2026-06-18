@@ -77,8 +77,22 @@ function App() {
     return matchesSearch && matchesCategory
   })
   return (
+    <div className="text-center grid grid-cols-4 w-100000">
     <div>
-    <div>
+      <h1 className="text-regal-blue">Recipe Manager</h1>
+      <div className="w-50 col-span-2">
+      <div className="w-20 col-span-1">
+        <input
+        value = {aiPrompt}
+        onChange = {e => setAiPrompt(e.target.value)}
+        placeholder = "Describe a recipe to generate with AI"
+        />
+        <button onClick={handleGenerate} disabled={aiLoading}>
+          {aiLoading ? "Generating...": "Generate with AI"}
+        </button>
+        {aiError && <p style = {{color: "red"}}>{aiError}</p>}
+      </div>
+      <div className="w-20">
       <input
       value = {search}
       onChange = {e => setSearch(e.target.value)}
@@ -93,21 +107,10 @@ function App() {
         <option value="snack">Snack</option>
       </select>
     </div>
-    <div>
-      <h1>Recipe Manager</h1>
+    </div>
       <div>
         <input
-        value = {aiPrompt}
-        onChange = {e => setAiPrompt(e.target.value)}
-        placeholder = "Describe a recipe to generate with AI"
-        />
-        <button onClick={handleGenerate} disabled={aiLoading}>
-          {aiLoading ? "Generating...": "Generate with AI"}
-        </button>
-        {aiError && <p style = {{color: "red"}}>{aiError}</p>}
-      </div>
-      <div>
-        <input
+          className = "font-medium"
           value = {title}
           onChange={e => setTitle(e.target.value)}
           placeholder = "Title"
@@ -125,7 +128,7 @@ function App() {
             <option value="dessert">Dessert</option>
             <option value="snack">Snack</option>
           </select>
-          <input value = {ingredients} onChange={e => setIngredients(e.target.value)} placeholder = "Ingredients (comma separated)"/>
+          <input className="mt-2" value = {ingredients} onChange={e => setIngredients(e.target.value)} placeholder = "Ingredients (comma separated)"/>
           <input type = "number" value = {prepTime} onChange={e => setPrepTime(Number(e.target.value))} placeholder= "Prep time (min)"/>
           <input type = "number" value = {cookTime} onChange={e => setCookTime(Number(e.target.value))} placeholder="Cook time (min)"/>
           <input type = "number" value = {servings} onChange={e => setServings(Number(e.target.value))} placeholder = "Servings" />
